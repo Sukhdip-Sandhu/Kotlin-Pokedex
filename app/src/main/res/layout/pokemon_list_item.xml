@@ -1,40 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="200dp"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="4dp"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
 
         <LinearLayout
+            android:id="@+id/linear_layout_card_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/pokemon_image"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:contentDescription="@string/image_content_description"
-                android:scaleType="fitXY" />
+            <TextView
+                android:id="@+id/pokemon_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="end"
+                android:text="001"
+                android:textColor="@color/transparent_text"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/pokemon_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="-10dp"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/placeholder_pokemon_name"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.robertlevonyan.views.chip.Chip
+                        android:id="@+id/chip_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="visible"
+                        app:mcv_backgroundColor="@color/transparent_background"
+                        app:mcv_chipText="Type 1"
+                        app:mcv_textColor="@color/white" />
+
+                    <com.robertlevonyan.views.chip.Chip
+                        android:id="@+id/chip_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="visible"
+                        app:mcv_backgroundColor="@color/transparent_background"
+                        app:mcv_chipText="Type 2"
+                        app:mcv_textColor="@color/white" />
+
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/pokeball_background"
+                        android:backgroundTint="@color/transparent_background"
+                        android:translationX="25dp"
+                        android:translationY="25dp" />
+
+                    <ImageView
+                        android:id="@+id/pokemon_image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="24dp"
+                        android:contentDescription="@string/image_content_description"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sample_image" />
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
