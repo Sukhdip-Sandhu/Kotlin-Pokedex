@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@android:color/white" />
+        app:titleTextColor="@android:color/transparent" />
 
     <fragment
         android:id="@+id/list_pokemon_fragment"

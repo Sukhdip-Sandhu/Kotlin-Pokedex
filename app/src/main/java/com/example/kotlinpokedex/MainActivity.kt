@@ -4,8 +4,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -34,7 +37,10 @@ class MainActivity : AppCompatActivity() {
                 fragmentTransaction.commit()
 
                 val pokemon = Common.pokemonList[position]
-                toolbar.title = pokemon.name
+                toolbar.setBackgroundColor(Common.getColorByType(pokemon.type[0]))
+                val window: Window = window
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                window.statusBarColor = Common.getColorByType(pokemon.type[0])
 
             }
         }
@@ -56,9 +62,6 @@ class MainActivity : AppCompatActivity() {
                 fragmentTransaction.replace(R.id.list_pokemon_fragment, detailFragment)
                 fragmentTransaction.addToBackStack("detail")
                 fragmentTransaction.commit()
-
-                val pokemon = Common.findPokemonByNum(num)
-                toolbar.title = pokemon!!.name
             }
         }
     }
@@ -68,7 +71,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar.title = "Pokedex"
         setSupportActionBar(toolbar)
 
         LocalBroadcastManager.getInstance(this)
@@ -82,13 +84,16 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             android.R.id.home -> {
-                toolbar.title = "Pokemon List"
                 supportFragmentManager.popBackStack(
                     "detail",
                     FragmentManager.POP_BACK_STACK_INCLUSIVE
                 )
                 supportActionBar!!.setDisplayShowHomeEnabled(false)
                 supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+                toolbar.setBackgroundColor(Color.WHITE)
+                val window: Window = window
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                window.statusBarColor = Color.WHITE
             }
         }
         return true
@@ -96,10 +101,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        toolbar.title = "Pokemon List"
         supportFragmentManager.popBackStack("detail", FragmentManager.POP_BACK_STACK_INCLUSIVE)
         supportActionBar!!.setDisplayShowHomeEnabled(false)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        toolbar.setBackgroundColor(Color.WHITE)
+        val window: Window = window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = Color.WHITE
     }
 
 }

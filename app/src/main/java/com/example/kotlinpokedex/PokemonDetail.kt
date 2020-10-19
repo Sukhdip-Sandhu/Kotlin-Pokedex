@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,9 +21,9 @@ import com.example.kotlinpokedex.Model.Pokemon
  * A simple [Fragment] subclass.
  */
 class PokemonDetail : Fragment() {
+    internal lateinit var detailsBackground: RelativeLayout
 
     internal lateinit var pokemonImg: ImageView
-
     internal lateinit var pokemonName: TextView
     internal lateinit var pokemonWeight: TextView
     internal lateinit var pokemonHeight: TextView
@@ -58,30 +59,27 @@ class PokemonDetail : Fragment() {
 
         pokemonImg = itemView.findViewById(R.id.pokemon_image_details) as ImageView
 
+        detailsBackground = itemView.findViewById(R.id.details_background) as RelativeLayout
+
         pokemonName = itemView.findViewById(R.id.pokemon_name_details) as TextView
         pokemonWeight = itemView.findViewById(R.id.pokemon_weight_details) as TextView
         pokemonHeight = itemView.findViewById(R.id.pokemon_height_details) as TextView
 
         recyclerType = itemView.findViewById(R.id.type_recycler_view) as RecyclerView
         recyclerType.setHasFixedSize(true)
-        recyclerType.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerType.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         recyclerWeakness = itemView.findViewById(R.id.weakness_recycler_view) as RecyclerView
         recyclerWeakness.setHasFixedSize(true)
-        recyclerWeakness.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerWeakness.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         recyclerPrevEvolution = itemView.findViewById(R.id.prev_evol_recycler_view) as RecyclerView
         recyclerPrevEvolution.setHasFixedSize(true)
-        recyclerPrevEvolution.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerPrevEvolution.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        recyclerNextEvolution =
-            itemView.findViewById(R.id.next_evol_recycler_view) as RecyclerView
+        recyclerNextEvolution = itemView.findViewById(R.id.next_evol_recycler_view) as RecyclerView
         recyclerNextEvolution.setHasFixedSize(true)
-        recyclerNextEvolution.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerNextEvolution.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         setDetailPokemon(pokemon)
 
@@ -89,6 +87,8 @@ class PokemonDetail : Fragment() {
     }
 
     private fun setDetailPokemon(pokemon: Pokemon?) {
+
+        detailsBackground.setBackgroundColor(Common.getColorByType(pokemon!!.type[0]))
 
         Glide.with(activity!!).load(pokemon!!.img).into(pokemonImg)
         pokemonName.text = pokemon.name
