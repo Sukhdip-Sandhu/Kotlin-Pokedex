@@ -21,12 +21,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/pokemon_name_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:padding="16dp"
                     android:text="@string/placeholder_pokemon_name"
                     android:textColor="@color/white"
@@ -35,9 +37,9 @@
 
                 <TextView
                     android:id="@+id/pokemon_id_details"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
+                    android:layout_gravity="center_horizontal"
                     android:paddingEnd="16dp"
                     android:text="@string/pokemon_id"
                     android:textColor="@color/white"
@@ -137,31 +139,88 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp" />
 
-                <TextView
-                    android:id="@+id/pokemon_prev_evol_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pokemon_prev_evol_title"
-                    android:textSize="@dimen/text_size"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/prev_evol_recycler_view"
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="40dp" />
+                    android:layout_height="1dp"
+                    android:layout_margin="8dp"
+                    android:background="#c0c0c0" />
 
-                <TextView
-                    android:id="@+id/pokemon_next_evol_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pokemon_next_evol_title"
-                    android:textSize="@dimen/text_size"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/next_evol_recycler_view"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/left_evolution_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Previous Evolution"
+                            android:textSize="@dimen/text_size"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/prev_evol_image"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/prev_evol_recycler_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_horizontal" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/right_evolution_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Next Evolution"
+                            android:textSize="@dimen/text_size"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/next_evol_image"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/next_evol_recycler_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_horizontal" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <!--                <androidx.recyclerview.widget.RecyclerView-->
+                <!--                    android:id="@+id/prev_evol_recycler_view"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="40dp" />-->
+
+                <!--                <androidx.recyclerview.widget.RecyclerView-->
+                <!--                    android:id="@+id/next_evol_recycler_view"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="40dp" />-->
 
             </LinearLayout>
 

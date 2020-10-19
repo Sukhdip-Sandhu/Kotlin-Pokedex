@@ -12,4 +12,6 @@
     <string name="pokemon_weakness_title">Weaknesses</string>
     <string name="pokemon_prev_evol_title">Previous Evolutions</string>
     <string name="pokemon_next_evol_title">Future Evolutions</string>
+    <string name="previous_evolution">Previous Evolution</string>
+    <string name="next_evolution">Next Evolution</string>
 </resources>

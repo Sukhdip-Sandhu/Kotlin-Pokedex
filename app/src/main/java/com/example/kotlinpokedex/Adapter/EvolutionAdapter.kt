@@ -16,7 +16,6 @@ import com.robertlevonyan.views.chip.Chip
 class EvolutionAdapter(
     internal var context: Context,
     var evolutionList: List<Evolution>?
-//    var nextEvolutionList: List<NextEvolution>?
 ) : RecyclerView.Adapter<EvolutionAdapter.MyViewHolder>() {
 
     init {
