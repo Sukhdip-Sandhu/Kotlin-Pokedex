@@ -5,4 +5,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="image_content_description">Image of Pokemon</string>
     <string name="placeholder_pokemon_name">Pikachu</string>
+    <string name="pokemon_height">Height: %1$s</string>
+    <string name="pokemon_weight">Weight %1$s</string>
+    <string name="pokemon_type_title">Type</string>
+    <string name="pokemon_weakness_title">Weaknesses</string>
+    <string name="pokemon_prev_evol_title">Previous Evolutions</string>
+    <string name="pokemon_next_evol_title">Future Evolutions</string>
 </resources>

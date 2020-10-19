@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     // Create broadcast handle
-    private val showDetail = object:BroadcastReceiver(){
+    private val showDetail = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent!!.action!!.toString() == Common.KEY_ENABLE_HOME) {
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -40,6 +40,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private val showEvolution = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent!!.action!!.toString() == Common.KEY_NUM_EVOLUTION) {
+
+                // Replace Fragment
+                val detailFragment = PokemonDetail.getInstance()
+                val bundle = Bundle()
+                val num = intent.getStringExtra("num")
+                bundle.putString("num", num)
+                detailFragment.arguments = bundle
+
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.remove(detailFragment)
+                fragmentTransaction.replace(R.id.list_pokemon_fragment, detailFragment)
+                fragmentTransaction.addToBackStack("detail")
+                fragmentTransaction.commit()
+
+                val pokemon = Common.findPokemonByNum(num)
+                toolbar.title = pokemon!!.name
+            }
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,14 +74,19 @@ class MainActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this)
             .registerReceiver(showDetail, IntentFilter(Common.KEY_ENABLE_HOME))
 
+        LocalBroadcastManager.getInstance(this)
+            .registerReceiver(showEvolution, IntentFilter(Common.KEY_NUM_EVOLUTION))
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId)
-        {
+        when (item!!.itemId) {
             android.R.id.home -> {
                 toolbar.title = "Pokemon List"
-                supportFragmentManager.popBackStack("detail", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                supportFragmentManager.popBackStack(
+                    "detail",
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE
+                )
                 supportActionBar!!.setDisplayShowHomeEnabled(false)
                 supportActionBar!!.setDisplayHomeAsUpEnabled(false)
             }
@@ -68,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         toolbar.title = "Pokemon List"
-//        supportFragmentManager.popBackStack("detail", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.popBackStack("detail", FragmentManager.POP_BACK_STACK_INCLUSIVE)
         supportActionBar!!.setDisplayShowHomeEnabled(false)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
     }

@@ -23,11 +23,11 @@ data class Pokemon(
     @SerializedName("name")
     val name: String,
     @SerializedName("next_evolution")
-    val nextEvolution: List<NextEvolution>,
+    val nextEvolution: List<Evolution>,
     @SerializedName("num")
     val num: String,
     @SerializedName("prev_evolution")
-    val prevEvolution: List<PrevEvolution>,
+    val prevEvolution: List<Evolution>,
     @SerializedName("spawn_chance")
     val spawnChance: Double,
     @SerializedName("spawn_time")

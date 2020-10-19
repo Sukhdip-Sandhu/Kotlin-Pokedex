@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <com.robertlevonyan.views.chip.Chip
+        android:id="@+id/chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:mcv_backgroundColor="@color/colorPrimary"
+        app:mcv_chipText="@string/placeholder_pokemon_name"
+        app:mcv_textColor="@android:color/white">
+
+    </com.robertlevonyan.views.chip.Chip>
+
+</RelativeLayout>
