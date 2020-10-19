@@ -32,6 +32,12 @@ class MainActivity : AppCompatActivity() {
                 detailFragment.arguments = bundle
 
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.setCustomAnimations(
+                    R.anim.fade_in,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.fade_out
+                )
                 fragmentTransaction.replace(R.id.list_pokemon_fragment, detailFragment)
                 fragmentTransaction.addToBackStack("detail")
                 fragmentTransaction.commit()
