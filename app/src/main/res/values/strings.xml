@@ -6,8 +6,8 @@
     <string name="image_content_description">Image of Pokemon</string>
     <string name="placeholder_pokemon_name">Pikachu</string>
     <string name="pokemon_id">#%3$d</string>
-    <string name="pokemon_height">Height: %1$s</string>
-    <string name="pokemon_weight">Weight %1$s</string>
+    <string name="pokemon_height">Height</string>
+    <string name="pokemon_weight">Weight</string>
     <string name="pokemon_type_title">Type</string>
     <string name="pokemon_weakness_title">Weaknesses</string>
     <string name="pokemon_prev_evol_title">Previous Evolutions</string>

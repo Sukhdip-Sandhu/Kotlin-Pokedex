@@ -12,10 +12,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.example.kotlinpokedex.Adapter.EvolutionAdapter
 import com.example.kotlinpokedex.Adapter.PokemonTypeAdapter
 import com.example.kotlinpokedex.Common.Common
 import com.example.kotlinpokedex.Model.Pokemon
+import com.robertlevonyan.views.chip.Chip
 
 /**
  * A simple [Fragment] subclass.
@@ -25,8 +30,9 @@ class PokemonDetail : Fragment() {
 
     internal lateinit var pokemonImg: ImageView
     internal lateinit var pokemonName: TextView
-    internal lateinit var pokemonWeight: TextView
-    internal lateinit var pokemonHeight: TextView
+    internal lateinit var pokemonId: TextView
+    internal lateinit var pokemonWeight: Chip
+    internal lateinit var pokemonHeight: Chip
 
     internal lateinit var recyclerType: RecyclerView
     internal lateinit var recyclerWeakness: RecyclerView
@@ -62,24 +68,29 @@ class PokemonDetail : Fragment() {
         detailsBackground = itemView.findViewById(R.id.details_background) as RelativeLayout
 
         pokemonName = itemView.findViewById(R.id.pokemon_name_details) as TextView
-        pokemonWeight = itemView.findViewById(R.id.pokemon_weight_details) as TextView
-        pokemonHeight = itemView.findViewById(R.id.pokemon_height_details) as TextView
+        pokemonId = itemView.findViewById(R.id.pokemon_id_details) as TextView
+        pokemonWeight = itemView.findViewById(R.id.pokemon_weight_details) as Chip
+        pokemonHeight = itemView.findViewById(R.id.pokemon_height_details) as Chip
 
         recyclerType = itemView.findViewById(R.id.type_recycler_view) as RecyclerView
         recyclerType.setHasFixedSize(true)
-        recyclerType.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerType.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         recyclerWeakness = itemView.findViewById(R.id.weakness_recycler_view) as RecyclerView
         recyclerWeakness.setHasFixedSize(true)
-        recyclerWeakness.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerWeakness.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         recyclerPrevEvolution = itemView.findViewById(R.id.prev_evol_recycler_view) as RecyclerView
         recyclerPrevEvolution.setHasFixedSize(true)
-        recyclerPrevEvolution.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerPrevEvolution.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         recyclerNextEvolution = itemView.findViewById(R.id.next_evol_recycler_view) as RecyclerView
         recyclerNextEvolution.setHasFixedSize(true)
-        recyclerNextEvolution.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerNextEvolution.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         setDetailPokemon(pokemon)
 
@@ -90,10 +101,16 @@ class PokemonDetail : Fragment() {
 
         detailsBackground.setBackgroundColor(Common.getColorByType(pokemon!!.type[0]))
 
-        Glide.with(activity!!).load(pokemon!!.img).into(pokemonImg)
+        Glide.with(activity!!)
+            .load(pokemon!!.img)
+            .dontTransform()
+            .format(DecodeFormat.PREFER_ARGB_8888)
+            .into(pokemonImg)
+
         pokemonName.text = pokemon.name
-        pokemonHeight.text = getString(R.string.pokemon_height, pokemon.height)
-        pokemonWeight.text = getString(R.string.pokemon_height, pokemon.weight)
+        pokemonId.text = "#${pokemon.id.toString().padStart(3, '0')}"
+        pokemonHeight.chipText = pokemon.height
+        pokemonWeight.chipText = pokemon.weight
 
         val typeAdapter = PokemonTypeAdapter(activity!!, pokemon.type!!)
         recyclerType.adapter = typeAdapter
